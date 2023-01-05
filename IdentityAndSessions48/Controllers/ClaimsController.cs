@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using IdentityAndSessions48.Infrastructure;
 
 namespace IdentityAndSessions48.Controllers
 {
@@ -23,6 +24,12 @@ namespace IdentityAndSessions48.Controllers
 
         [Authorize(Roles = "PueStaff")]
         public ActionResult OtherAction()
+        {
+            return View();
+        }
+
+        [ClaimsAccess(Issuer = "RemoteClaims", ClaimType = ClaimTypes.PostalCode, Value = "DC 21234")]
+        public ActionResult ClaimsAccess()
         {
             return View();
         }
