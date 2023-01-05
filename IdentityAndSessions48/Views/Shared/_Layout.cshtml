@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Identity Demo</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
@@ -20,12 +20,13 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body class="container">
-    <div class="container">
-        @RenderBody()
-    </div>
 
-    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("Scripts", false)
+<div class="container">
+    @RenderBody()
+</div>
+
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+@RenderSection("Scripts", false)
 </body>
 </html>

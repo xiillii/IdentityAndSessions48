@@ -14,8 +14,12 @@ namespace IdentityAndSessions48.Controllers
     public class AccountController : Controller
     {
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl = "/")
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "Access Denied" });
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -25,7 +29,7 @@ namespace IdentityAndSessions48.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginModel details, string returnUrl)
+        public async Task<ActionResult> Login(LoginModel details, string returnUrl = "/")
         {
             if (ModelState.IsValid)
             {
@@ -50,6 +54,13 @@ namespace IdentityAndSessions48.Controllers
             ViewBag.ReturnUrl = returnUrl;
 
             return View(details);
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;

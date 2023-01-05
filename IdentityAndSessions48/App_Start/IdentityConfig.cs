@@ -13,12 +13,13 @@ namespace IdentityAndSessions48
         {
             app.CreatePerOwinContext<AppIdentityDbContext>(AppIdentityDbContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+            app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
-                ExpireTimeSpan = TimeSpan.FromMinutes(2),
+                ExpireTimeSpan = TimeSpan.FromMinutes(5),
             });
         }
     }
