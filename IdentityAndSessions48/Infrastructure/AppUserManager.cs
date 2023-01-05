@@ -19,7 +19,7 @@ namespace IdentityAndSessions48.Infrastructure
 
             manager.PasswordValidator = new CustomPasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 5,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,

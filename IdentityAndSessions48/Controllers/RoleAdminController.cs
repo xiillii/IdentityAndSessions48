@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace IdentityAndSessions48.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class RoleAdminController : Controller
     {
         // GET: RoleAdmin

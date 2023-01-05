@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace IdentityAndSessions48.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
         // GET: Admin
