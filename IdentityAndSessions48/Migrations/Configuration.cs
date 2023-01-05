@@ -53,7 +53,8 @@ namespace IdentityAndSessions48.Migrations
 
             foreach (var dbUser in userManager.Users)
             {
-                dbUser.City = Cities.PARIS;
+                if (dbUser.Country == Countries.NONE)
+                    dbUser.SetCountryFromCity(dbUser.City);
             }
 
             context.SaveChanges();

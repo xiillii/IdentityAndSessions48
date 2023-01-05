@@ -164,10 +164,15 @@
     <Compile Include="Migrations\202301050652271_CityProperty.designer.cs">
       <DependentUpon>202301050652271_CityProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301050702379_CountryProperty.cs" />
+    <Compile Include="Migrations\202301050702379_CountryProperty.designer.cs">
+      <DependentUpon>202301050702379_CountryProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Cities.cs" />
+    <Compile Include="Models\Countries.cs" />
     <Compile Include="Models\CreateModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RoleEditModel.cs" />
@@ -205,6 +210,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202301050652271_CityProperty.resx">
       <DependentUpon>202301050652271_CityProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301050702379_CountryProperty.resx">
+      <DependentUpon>202301050702379_CountryProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
