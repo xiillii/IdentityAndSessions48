@@ -43,9 +43,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Action only for Users role", "OtherAction", "Home")</li>
                 <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Roles", "Index", "RoleAdmin")</li>
                 <li>@Html.ActionLink("User Props", "UserProps", "Home")</li>
+                <li>@Html.ActionLink("Claims", "Index", "Claims")</li>
+                <li>@Html.ActionLink("Action Protected by Claim-Role", "OtherAction", "Claims")</li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
