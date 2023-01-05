@@ -67,7 +67,7 @@
                     _timeLeft--;
                     _countDownTimer = window.setTimeout(updateCountDown, 1000);
                 } else {
-                    document.location = "Account/Login";
+                    document.location.href = '@Url.Action("Logout", "Account")';
                 }
             };
 
