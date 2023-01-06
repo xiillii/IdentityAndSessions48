@@ -71,6 +71,57 @@ namespace IdentityAndSessions48.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult GoogleLogin(string returnUrl = "/")
+        {
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("GoogleLoginCallback", new { returnUrl = returnUrl })
+            };
+            HttpContext.GetOwinContext().Authentication.Challenge(properties, "Google");
+            return new HttpUnauthorizedResult();
+        }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> GoogleLoginCallback(string returnUrl = "/")
+        {
+            var loginInfo = await AuthManager.GetExternalLoginInfoAsync();
+            var user = await UserManager.FindAsync(loginInfo.Login);
+
+            if (user == null)
+            {
+                user = new AppUser
+                {
+                    Email = loginInfo.Email,
+                    UserName = loginInfo.DefaultUserName,
+                    City = Cities.LONDON,
+                    Country = Countries.UK
+                };
+
+                var result = await UserManager.CreateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return View("Error", result.Errors);
+                }
+
+                result = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                if (!result.Succeeded)
+                {
+                    return View("Error", result.Errors);
+                }
+            }
+
+            var ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            ident.AddClaims(loginInfo.ExternalIdentity.Claims);
+            AuthManager.SignIn(new AuthenticationProperties
+            {
+                IsPersistent = false
+            }, ident);
+
+            return Redirect(returnUrl);
+        }
+
         private IAuthenticationManager AuthManager => HttpContext.GetOwinContext().Authentication;
 
         private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();

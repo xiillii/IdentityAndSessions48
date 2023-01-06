@@ -18,12 +18,15 @@ namespace IdentityAndSessions48.Infrastructure
         {
             var result = await base.ValidateAsync(user);
 
-            if (!user.Email.ToLower().EndsWith("@josealonso.dev"))
-            {
-                var errors = result.Errors.ToList();
-                errors.Add("Only josealonso.dev email addresses are allowed");
-                result = new IdentityResult(errors);
-            }
+            // We are using Google as a external authentication, so, 
+            // we need to comment the following code
+
+            //if (!user.Email.ToLower().EndsWith("@josealonso.dev"))
+            //{
+            //    var errors = result.Errors.ToList();
+            //    errors.Add("Only josealonso.dev email addresses are allowed");
+            //    result = new IdentityResult(errors);
+            //}
 
             return result;
         }

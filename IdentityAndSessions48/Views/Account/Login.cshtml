@@ -9,8 +9,8 @@
         background: #e2e2e2;
         width: 100%;
         position: absolute;
-        top: 2em;
-        /*bottom: 0;*/
+        top: 0;
+        bottom: 0;
     }
 
     .div-center {
@@ -44,12 +44,12 @@
             @Html.ValidationSummary()
 
             <h3>Log In</h3>
-            <hr/>
+            <hr />
 
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                
+
                 <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
                 <div class="form-group">
                     <label>Name</label>
@@ -61,8 +61,14 @@
                 </div>
                 <button class="btn btn-primary" type="submit">Log In</button>
             }
+
+            @using (Html.BeginForm("GoogleLogin", "Account"))
+            {
+                <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                <button class="btn btn-primary" type="submit">Log In via Google</button>
+            }
         </div>
     </div>
-    
+
 </div>
 
